@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=Griffin-Brave-Remix
+Comment=A Flat theme with colors and window design like no other. The first theme of its kind.
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+Name=Griffin-Brave-Remix
+GtkTheme=Griffin-Brave-Remix
+IconTheme=Griffin-Brave-Remix
+MetacityTheme=Griffin-Brave-Remix
