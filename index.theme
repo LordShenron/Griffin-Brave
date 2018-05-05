@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=Griffin-Brave-Darl
+Comment=A Dark Material Design theme based on Materia.
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=Griffin-Brave-Dark
+MetacityTheme=Griffin-Brave-Dark
+
