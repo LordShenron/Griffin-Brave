@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <gresources>
-	<gresource prefix='/org/numixproject/gtk'>
+	<gresource prefix='/org/Griffin/gtk'>
 		<file preprocess='to-pixdata'>assets/checkbox-checked-dark.svg</file>
 		<file preprocess='to-pixdata'>assets/checkbox-checked-insensitive-dark.svg</file>
 		<file preprocess='to-pixdata'>assets/checkbox-checked-insensitive.svg</file>

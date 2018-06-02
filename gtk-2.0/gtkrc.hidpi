@@ -1,7 +1,7 @@
-# Griffin-Brave-Remix
+# Griffin GTK Theme (Numix Fork)
 
 gtk-color-scheme =
-"base_color:#ffffff\nbg_color:#ffffff\ntooltip_bg_color:#ffffff\nselected_bg_color:#522c7f\ntext_color:#000000\nfg_color:#0e0021\ntooltip_fg_color:#0e0021\nselected_fg_color:#f7f7f7\nmenubar_bg_color:#322643\nmenubar_fg_color:#f7ffef\ntoolbar_bg_color:#ffffff\ntoolbar_fg_color:#0e0021\nmenu_bg_color:#322643\nmenu_fg_color:#f7ffef\npanel_bg_color:#ffffff\npanel_fg_color:#0e0021\nlink_color:#522c7f\nbtn_bg_color:#36125d\nbtn_fg_color:#f6efff\ntitlebar_bg_color:#322643\ntitlebar_fg_color:#f7ffef\n"
+"base_color:#FFFFFF\nbg_color:#FFFFFF\ntooltip_bg_color:#FFFFFF\nselected_bg_color:#4d2863\ntext_color:#0a0a0a\nfg_color:#120202\ntooltip_fg_color:#120202\nselected_fg_color:#FFFFFF\nmenubar_bg_color:#010000\nmenubar_fg_color:#f6feff\ntoolbar_bg_color:#FFFFFF\ntoolbar_fg_color:#120202\nmenu_bg_color:#010000\nmenu_fg_color:#f6feff\npanel_bg_color:#FFFFFF\npanel_fg_color:#120202\nlink_color:#7600d7\nbtn_bg_color:#fcfcfc\nbtn_fg_color:#0b0505\ntitlebar_bg_color:#010000\ntitlebar_fg_color:#f6feff\nprimary_caret_color:#000000\nsecondary_caret_color:#000000\naccent_bg_color:#5d2778\n"
 # Default Style
 
 style "murrine-default" {
@@ -11,6 +11,10 @@ style "murrine-default" {
 	GtkButton::child-displacement-y = 0
 
 	GtkButton::default-border = { 0, 0, 0, 0 }
+    #GtkButton::inner-border        = { 8, 8, 2, 2 }
+    GtkButton::inner-border        = { 4, 4, 2, 2 }
+    GtkButton::focus-line-width    = 2
+    GtkButton::focus-padding       = 1
 
 	GtkButtonBox::child-min-height = 52
 
@@ -127,7 +131,7 @@ style "murrine-default" {
 		colorize_scrollbar = FALSE
 		comboboxstyle = 0 # 0 = normal combobox, 1 = colorized combobox below arrow
 		contrast = 0.8 # overal contrast with borders
-		focusstyle = 1 # 0 = none, 1 = grey dotted, 2 = colored with fill, 3 = colored glow
+		focusstyle = 3 # 0 = none, 1 = grey dotted, 2 = colored with fill, 3 = colored glow
 		glazestyle = 0 # 0 = flat highlight, 1 = curved highlight, 2 = concave, 3 = top curved highlight, 4 = beryl highlight
 		glowstyle = 0 # 0 = glow on top, 1 = glow on bottom, 2 = glow on top and bottom, 3 = glow on middle vertically, 4 = glow on middle horizontally, 5 = glow on all sides
 		glow_shade = 1.0 # amount of glow
@@ -157,8 +161,8 @@ style "murrine-wide" {
 }
 
 style "murrine-wider" {
-	xthickness = 4
-	ythickness = 8
+	xthickness = 10
+	ythickness = 10
 }
 
 style "murrine-thin" {
@@ -187,12 +191,14 @@ style "clearlooks-notebook" = "clearlooks-notebook-bg" {
 style "murrine-button"  = "murrine-wider" {
 	bg[NORMAL] = @btn_bg_color
 	bg[PRELIGHT] = shade (1.04, @btn_bg_color)
-	bg[SELECTED] = shade (0.7, @btn_bg_color)
+	bg[SELECTED] = mix (0.5, @selected_bg_color, @bg_color)
 	bg[ACTIVE] = shade (0.95, @btn_bg_color)
 	bg[INSENSITIVE] = shade (0.75, @btn_bg_color)
+    xthickness = 8
+    ythickness = 8
 
 	engine "murrine" {
-		border_colors = { mix(0.4, @btn_fg_color, @btn_bg_color), mix(0.4, @btn_fg_color, @btn_bg_color) }
+		border_colors = { mix(0.25, @btn_fg_color, @btn_bg_color), mix(0.25, @btn_fg_color, @btn_bg_color) }
 		roundness = 4
 	}
 }
@@ -232,22 +238,24 @@ style "murrine-overlay-scrollbar" {
 
 style "murrine-scale" = "murrine-thin" {
 	bg[NORMAL] = @btn_bg_color
-	bg[ACTIVE] = @bg_color
+	bg[ACTIVE] = mix(0.2, @fg_color, @bg_color)
 	bg[SELECTED] = @selected_bg_color
-	bg[INSENSITIVE] = shade (0.95, @btn_bg_color)
+	bg[INSENSITIVE] = mix(0.95, @bg_color, @btn_bg_color)
 
 	engine "murrine" {
-		roundness = 25
+        roundness = 25
+		#roundness = 4
 		gradient_shades = { 1.08, 1.08, 1.08, 1.08 }
-		border_shades = { 0.5, 0.5 }
-		trough_shades = { 1.08, 1.08 }
-		trough_border_shades = { 0.8, 0.8 }
+		#border_shades = { 0.5, 0.5 }
+		border_colors = { mix(0.25, @btn_fg_color, @btn_bg_color), mix(0.25, @btn_fg_color, @btn_bg_color) }
+        #trough_shades = { 1.08, 1.08 }
+        trough_border_shades = { 0.8, 0.8 }
 	}
 }
 
 style "murrine-progressbar" = "murrine-thin" {
 	bg[NORMAL] = @bg_color
-	bg[ACTIVE] = shade (1.08, @bg_color)
+	bg[ACTIVE] = mix(0.08, @bg_color, @base_color)
 
 	fg[PRELIGHT] = @selected_fg_color
 
@@ -259,17 +267,11 @@ style "murrine-progressbar" = "murrine-thin" {
 }
 
 style "murrine-treeview-header" = "murrine-button" {
-	#bg[NORMAL] = @base_color
-	bg[NORMAL] = mix(0.12, @bg_color, @base_color)
-	bg[PRELIGHT] = shade (1.04, @base_color)
-	bg[SELECTED] = shade (0.7, @base_color)
-	bg[ACTIVE] = shade (0.95, @base_color)
-	fg[INSENSITIVE] = mix(0.20, @bg_color, @base_color)
-	fg[NORMAL] = @text_color
-	fg[PRELIGHT] = @text_color
-	fg[SELECTED] = @text_color
-	fg[ACTIVE] = @text_color
-	fg[INSENSITIVE] = mix(0.20, @bg_color, @text_color)
+	fg[NORMAL] = @fg_color
+	fg[PRELIGHT] = @fg_color
+	fg[SELECTED] = @fg_color
+	fg[ACTIVE] = @fg_color
+	fg[INSENSITIVE] = mix(0.20, @bg_color, @fg_color)
   	engine "murrine" {
 		roundness = 0
 	}
@@ -314,8 +316,8 @@ style "clearlooks-radiocheck" = "murrine-default" {
 	bg[SELECTED] = @base_color
 	bg[PRELIGHT] = @bg_color
 
-	text[NORMAL] = @selected_bg_color
-	text[PRELIGHT] = @selected_bg_color
+	text[NORMAL] = @accent_bg_color
+	text[PRELIGHT] = @accent_bg_color
 
 	engine "clearlooks" {
 		radius = 4.0
@@ -323,13 +325,13 @@ style "clearlooks-radiocheck" = "murrine-default" {
 }
 
 style "clearlooks-base-radiocheck" = "clearlooks-radiocheck" {
-	bg[PRELIGHT] = @base_color
+	bg[PRELIGHT] = @bg_color
 }
 
 style "murrine-entry" = "murrine-wider" {
 	engine "murrine" {
 		#border_shades = { 1.15, 1.15 }
-		border_colors = { mix(0.4, @text_color, @base_color), mix(0.4, @text_color, @base_color) }
+		border_colors = { mix(0.22, @text_color, @base_color), mix(0.22, @text_color, @base_color) }
 		roundness = 4
 	}
 }
@@ -562,15 +564,15 @@ style "xfdesktop-icon-view" {
        XfdesktopIconView::shadow-y-offset = 1
        XfdesktopIconView::selected-shadow-x-offset = 0
        XfdesktopIconView::selected-shadow-y-offset = 1
-       XfdesktopIconView::shadow-color = "#000000"
-       XfdesktopIconView::selected-shadow-color = "#000000"
+       XfdesktopIconView::shadow-color = @fg_color
+       XfdesktopIconView::selected-shadow-color = @fg_color
        XfdesktopIconView::shadow-blur-radius = 2
        XfdesktopIconView::cell-spacing = 2
        XfdesktopIconView::cell-padding = 6
        XfdesktopIconView::cell-text-width-proportion = 1.9
 
-       fg[NORMAL] = @selected_fg_color
-       fg[ACTIVE] = @selected_fg_color
+       fg[NORMAL] = @bg_color
+       fg[ACTIVE] = @bg_color
 
 }
 
